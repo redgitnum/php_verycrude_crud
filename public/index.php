@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 require_once '../Router.php';
 require_once '../Database.php';
 // echo '<pre>';
@@ -12,7 +14,6 @@ $result = $route->dbData();
 $route->get('/');
 $route->get('/add');
 $route->get('/update');
-$route->get('/delete');
 
 $view = __DIR__.'/../views/'.$route->resolve();
 // echo '<pre>';

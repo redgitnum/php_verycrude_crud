@@ -15,10 +15,16 @@ foreach ($result as $entry) {?>
         <div>Name: <?php echo $entry['name'] ?></div>
         <div>Surname: <?php echo $entry['surname'] ?></div>
         <div>Age: <?php echo $entry['age'] ?></div>
-        <form action="/update" method="POST">
-            <input type="hidden" name="update_id" value="<?php echo $entry['id'] ?>">
-            <button type="submit">UPDATE</button>
-        </form>
+        <div class="buttons">
+            <form action="/update" method="POST">
+                <input type="hidden" name="update_id" value="<?php echo $entry['id'] ?>">
+                <button type="submit">UPDATE</button>
+            </form>
+            <form action="/delete" method="POST">
+                <input type="hidden" name="delete_id" value="<?php echo $entry['id'] ?>">
+                <button style="color: red" type="submit">DELETE</button>
+            </form>
+        </div>
     </li>
 <?php } ?>
 </ul>

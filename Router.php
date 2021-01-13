@@ -5,9 +5,11 @@ require_once 'Database.php';
 class Router
 {
     public $pages;
+    public $db;
     public function __construct()
     {
         $this->pages = [];
+        $this->db = new DB();
     }
 
     public function get($url)
@@ -34,33 +36,68 @@ class Router
                     // exit;
                     if(strlen($_REQUEST['name']) && strlen($_REQUEST['surname']) && strlen($_REQUEST['age']))
                         $this->addData($_REQUEST);
-                        return '/add.php';
+                        header("Location: add");
+                        exit;
                 }
                 elseif($request === '/update'){
-                    echo '<pre>';
-                    var_dump($_REQUEST);
-                    echo '</pre>';
+                    // echo '<pre>';
+                    // var_dump($_REQUEST);
+                    // echo '</pre>';
+                    // exit;
+                    $_SESSION['update_info'] = $this->updateData($_REQUEST);
+                    // return '/update.php';
+                    header('Location: update');
+                    session_write_close();
                     exit;
-                    if(strlen($_REQUEST['name']) && strlen($_REQUEST['surname']) && strlen($_REQUEST['age']))
-                        $this->addData($_REQUEST);
-                        return '/add.php';
                 }
-              
+                elseif($request === '/update_entry'){
+                    // echo '<pre>';
+                    // var_dump($_REQUEST);
+                    // echo '</pre>';
+                    // exit;
+                    if(strlen($_REQUEST['name']) && strlen($_REQUEST['surname']) && strlen($_REQUEST['age'])){    
+                        $this->updateDataInDb($_REQUEST);
+                        header("Location: /");
+                        exit;
+                    }
+                    header('Location: update');
+                    exit;
+                }
+
+                elseif($request === '/delete'){
+                    $this->deleteRecord($_REQUEST);
+                    header('Location: /');
+                    exit;
+                }
+                header("Location: /");
+                exit;
             }
         }
     }
-
     public function dbData()
     {   
-        $db = new DB();
-        $result = $db->getAll();
+        $result = $this->db->getAll();
         return $result;
     }
 
     public function addData($data)
     {   
-        $db = new DB();
-        $db->addData($data);
+        $this->db->addData($data);
+    }
+
+    public function updateData($data)
+    {   
+        return $this->db->getForUpdate($data);
+    }
+
+    public function updateDataInDb($data)
+    {   
+        $this->db->update($data);
+    }
+
+    public function deleteRecord($data)
+    {   
+        $this->db->delete($data);
     }
 }
 ?>

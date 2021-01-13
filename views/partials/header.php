@@ -15,8 +15,6 @@ include_once dirname(__DIR__, 2).'/public/app.css';
         <ul>
             <li><a href="/">Index</a></li>
             <li><a href="/add">Add</a></li>
-            <li><a href="/update">Update</a></li>
-            <li><a href="/delete">Delete</a></li>
         </ul>
     </nav>
 
