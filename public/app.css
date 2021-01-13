@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(216, 216, 216);
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    background-color: rgb(78, 78, 78);
+    margin: 20px;
+    color: rgb(216, 216, 216);
+}
+
+nav {
+    display: flex;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li {
+    padding: 0 1em;
+}
+
+a {
+    color: rgb(166, 188, 255);
+    font-weight: bold;
+    font-size: 1.4em;
+    padding: 1em 0;
+}
+
+input{
+    padding: 5px;
+    color: black;
+}
+
+.form-input {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+button{
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 5px;
+    margin: 5px;
+}
+
+.index-list {
+    padding: 5px;
+    margin: 5px;
+}
